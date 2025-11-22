@@ -8,12 +8,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/pokemon")
 public class PokemonRestAPIController {
+
+    RestTemplate restTemplate;
 
     @Autowired
     PokemonRestAPIService pokemonRestAPIService;
@@ -47,6 +50,10 @@ public class PokemonRestAPIController {
         System.out.println(pokemon.getCategory());
         return ResponseEntity.ok("sfsdf");
     }
+
+
+    // CREATE DEL /api/pokemon/1  <--- DELETE
+
 
 
 
