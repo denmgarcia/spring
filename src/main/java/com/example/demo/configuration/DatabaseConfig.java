@@ -9,7 +9,6 @@ import org.springframework.context.annotation.Configuration;
 @Getter
 public class DatabaseConfig {
 
-    @Value("${DATABASE_HOST}")
     private String databaseURL;
 }
 
