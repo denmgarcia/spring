@@ -72,6 +72,5 @@ jobs:
         run: |
           mvn sonar:sonar \
             -Dsonar.projectKey=pokemon-api \
-            -Dsonar.host.url=${{ secrets.SONARQUBE_TOKEN }} \ 
-            -Dsonar.token=sqp_97df7247d236c1220019f19e29068ed92f844a91 \
-            -Dsonar.sources=src
+            -Dsonar.host.url=https://squshier-weldon-metazoal.ngrok-free.dev \ 
+            -Dsonar.token=sqp_97df7247d236c1220019f19e29068ed92f844a91
