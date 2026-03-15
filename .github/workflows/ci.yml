@@ -48,7 +48,7 @@ jobs:
 
     - name: Build and test
       env:
-        SPRING_DATASOURCE_URL: jdbc:postgresql://localhost:5432/sonar
+        SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/sonar
         SPRING_DATASOURCE_USERNAME: sonar
         SPRING_DATASOURCE_PASSWORD: sonar
       run: mvn clean test
