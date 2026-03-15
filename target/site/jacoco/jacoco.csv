@@ -1,0 +1,12 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+demo,com.example.demo.service,PokemonRestAPIService,12,3,0,0,3,1,2,1,2,1
+demo,com.example.demo.configuration,WebConfig,0,8,0,0,0,2,0,2,0,2
+demo,com.example.demo.configuration,DatabaseConfig,0,3,0,0,0,1,0,1,0,1
+demo,com.example.demo.configuration,WebConfig.new WebMvcConfigurer() {...},0,48,0,0,0,6,0,2,0,2
+demo,com.example.demo.controller,DashboardController,31,63,1,1,8,15,3,5,2,5
+demo,com.example.demo.controller,PokemonRestAPIController,51,3,2,0,11,1,5,1,4,1
+demo,com.example.demo.controller,PokemonController,85,3,6,0,21,1,9,1,6,1
+demo,com.example.demo.controller,PersonController,5,104,1,1,1,23,1,6,0,6
+demo,com.example.demo.exception,GlobalHandler,18,3,0,0,4,1,2,1,2,1
+demo,com.example.demo,DemoApplication,5,3,0,0,2,1,1,1,1,1
+demo,com.example.demo.request,UserInputRequest,0,3,0,0,0,1,0,1,0,1

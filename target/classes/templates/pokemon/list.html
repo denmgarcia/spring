@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
+<head>
+    <title>Pokemon</title>
+</head>
+<body>
+<tbody>
+
+<div th:each="pokemon : ${pokemonList}" style="border: 1px solid red; margin-bottom: 15px; margin-left: 20%; margin-right: 20%">
+    <div>
+
+        <p th:text="${pokemon.getName}"></p>
+        <p th:text="${pokemon.category.category}"></p>
+    </div>
+</div>
+
+<br/>
+
+<div th:each="category : ${categories}" style="border: 1px solid green; margin-bottom: 15px; margin-left: 20%; margin-right: 20%">
+    <div>
+
+        <p th:text="${category.getCategory}" style="padding-left: 20px; padding-top: 15px"></p>
+        <ul>
+            <li th:each="pokemon : ${category.pokemonList}" th:text="${pokemon.getName}"></li>
+
+        </ul>
+<!--        <p th:text="${category.pokemonList}"></p>-->
+    </div>
+</div>
+
+
+</tbody>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PokemonRestAPIController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">demo</a> &gt; <a href="index.source.html" class="el_package">com.example.demo.controller</a> &gt; <span class="el_source">PokemonRestAPIController.java</span></div><h1>PokemonRestAPIController.java</h1><pre class="source lang-java linenums">package com.example.demo.controller;
+
+
+import com.example.demo.entity.Pokemon;
+import com.example.demo.response.APIResponse;
+import com.example.demo.service.PokemonRestAPIService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
+
+@RestController
+@RequestMapping(&quot;/api/pokemon&quot;)
+<span class="fc" id="L16">public class PokemonRestAPIController {</span>
+
+    @Autowired
+    PokemonRestAPIService pokemonRestAPIService;
+
+    @GetMapping(&quot;/lists&quot;)
+    public ResponseEntity&lt;?&gt; getPokemonList() {
+<span class="nc" id="L23">        APIResponse api = new APIResponse&lt;&gt;(&quot;Test&quot;, 200, pokemonRestAPIService.getPokemonList());</span>
+<span class="nc" id="L24">        return ResponseEntity.ok(api);</span>
+    }
+
+    @GetMapping(&quot;/search&quot;)
+    public ResponseEntity&lt;?&gt; searchPokemon(@RequestParam String pokemon) {
+<span class="nc" id="L29">        Optional&lt;Pokemon&gt; findPokemon = pokemonRestAPIService.searchPokemon(pokemon);</span>
+
+<span class="nc bnc" id="L31" title="All 2 branches missed.">        if(findPokemon.isEmpty()){</span>
+<span class="nc" id="L32">            APIResponse&lt;?&gt; apiResponse = new APIResponse&lt;&gt;(&quot;Not found&quot;, 404, null);</span>
+<span class="nc" id="L33">            return new ResponseEntity&lt;&gt;(apiResponse, HttpStatus.NOT_FOUND);</span>
+        }
+
+<span class="nc" id="L36">        return ResponseEntity.ok(findPokemon);</span>
+    }
+
+    @GetMapping(&quot;/search/{pokemon}&quot;)
+    public ResponseEntity&lt;?&gt; pokemonPath(@PathVariable String pokemon) {
+<span class="nc" id="L41">        return this.searchPokemon(pokemon);</span>
+    }
+
+    @GetMapping(&quot;/request&quot;)
+    public ResponseEntity&lt;?&gt; pokemonPath(@RequestBody Pokemon pokemon) {
+<span class="nc" id="L46">        System.out.println(pokemon.getName());</span>
+<span class="nc" id="L47">        System.out.println(pokemon.getCategory());</span>
+<span class="nc" id="L48">        return ResponseEntity.ok(&quot;sfsdf&quot;);</span>
+    }
+
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>
