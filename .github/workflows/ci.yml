@@ -37,6 +37,13 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file pom.xml
 
+    - name: Build and test
+      env:
+        SPRING_DATASOURCE_URL: jdbc:postgresql://localhost:5432/sonar
+        SPRING_DATASOURCE_USERNAME: sonar
+        SPRING_DATASOURCE_PASSWORD: sonar
+      run: mvn clean test
+
     - name: Update dependency graph
       uses: advanced-security/maven-dependency-submission-action@v4
       with:
