@@ -39,7 +39,7 @@ jobs:
 
     - name: Wait for Postgres
       run: |
-        until pg_isready -h localhost -p 5432 -U sonar; do
+        until pg_isready -h postgres -p 5432 -U sonar; do
           echo "Waiting for Postgres..."
             sleep 2
           done
