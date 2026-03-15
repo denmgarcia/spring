@@ -37,6 +37,15 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file pom.xml
 
+    - name: Wait for Postgres
+      run: |
+        until pg_isready -h localhost -p 5432 -U sonar; do
+          echo "Waiting for Postgres..."
+            sleep 2
+          done
+      env:
+       PGPASSWORD: sonar
+
     - name: Build and test
       env:
         SPRING_DATASOURCE_URL: jdbc:postgresql://localhost:5432/sonar
