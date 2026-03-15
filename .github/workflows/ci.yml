@@ -61,3 +61,17 @@ jobs:
 
     - name: Push Docker image
       run: docker push cyborden/springboot-app:latest
+
+  sonarqube:
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: SonarCube Scan
+        run: |
+          mvn sonar:sonar \
+            -Dsonar.projectKey=pokemon-api \
+            -Dsonar.host.url=${{ secrets.SONARQUBE_TOKEN }} \ 
+            -Dsonar.token=sqp_97df7247d236c1220019f19e29068ed92f844a91 \
+            -Dsonar.sources=sr
