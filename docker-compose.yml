@@ -1,0 +1,24 @@
+services:
+  spring-boot:
+    image: cyborden/springboot-prod:v4
+    container_name: spring
+    depends_on:
+      - spring-db
+    ports:
+      - "8089:8089"
+    environment:
+      SONAR_JDBC_URL: jdbc:postgresql://db:5432/sonar
+      SONAR_JDBC_USERNAME: sonar
+      SONAR_JDBC_PASSWORD: sonar
+    restart: unless-stopped
+
+  spring-db:
+    image: postgres:15-alpine
+    container_name: spring-db
+    environment:
+      POSTGRES_USER: sonar
+      POSTGRES_PASSWORD: sonar
+      POSTGRES_DB: sonar
+    restart: unless-stopped
+    ports:
+      - "5438:5432"

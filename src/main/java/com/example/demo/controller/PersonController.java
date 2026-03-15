@@ -27,7 +27,6 @@ public class PersonController {
 
     @GetMapping("details")
     public ResponseEntity<?> getPersonDetails(){
-        System.out.println("=======" + config.getDatabaseURL());
 
         List<PersonEntity> getPersonEntities = personRepository.findAll();
 
@@ -36,8 +35,6 @@ public class PersonController {
                 200,
                 getPersonEntities
         );
-
-        Map<String, String> data = new HashMap<>();
 
         return ResponseEntity.ok(response);
     }

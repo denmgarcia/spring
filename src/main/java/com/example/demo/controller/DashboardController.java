@@ -46,7 +46,6 @@ public class DashboardController {
 
     @PostMapping("/submit")
     public String createPerson(@ModelAttribute UserInputRequest userInputRequest, RedirectAttributes redirectAttributes) {
-        System.out.println(userInputRequest.getFirstName() + " " + userInputRequest.getLastName());
         PersonEntity personEntity = new PersonEntity();
         personEntity.setLastName(userInputRequest.getLastName());
         personEntity.setFirstName(userInputRequest.getFirstName());
