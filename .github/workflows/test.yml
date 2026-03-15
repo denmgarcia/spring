@@ -15,9 +15,9 @@ jobs:
       postgres-test:
         image: postgres:15-alpine
         env:
-          POSTGRES_USER: sonar
-          POSTGRES_PASSWORD: sonar
-          POSTGRES_DB: sonar
+          POSTGRES_USER: test
+          POSTGRES_PASSWORD: test
+          POSTGRES_DB: testdb
         ports:
           - 5432:5432
         options: >-
