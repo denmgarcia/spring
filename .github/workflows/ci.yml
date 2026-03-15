@@ -8,8 +8,9 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
 
     services:
       postgres:
@@ -28,14 +29,21 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+
     - name: Set up JDK 21
       uses: actions/setup-java@v4
       with:
         java-version: '21'
         distribution: 'temurin'
         cache: maven
+
     - name: Build with Maven
+      # We pass the DB details as environment variables to ensure Maven tests use localhost
       run: mvn -B package --file pom.xml
+      env:
+        SPRING_DATASOURCE_URL: jdbc:postgresql://localhost:5432/sonar
+        SPRING_DATASOURCE_USERNAME: sonar
+        SPRING_DATASOURCE_PASSWORD: sonar
 
     # - name: Update dependency graph
     #   uses: advanced-security/maven-dependency-submission-action@v4
@@ -52,8 +60,8 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Build Docker image
-        run: docker build -t cyborden/springboot-app:latest .
+    - name: Build Docker image
+      run: docker build -t cyborden/springboot-app:latest .
 
-      - name: Push Docker image
-        run: docker push cyborden/springboot-app:latest
+    - name: Push Docker image
+      run: docker push cyborden/springboot-app:latest
