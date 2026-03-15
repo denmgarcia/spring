@@ -16,6 +16,7 @@ import java.util.*;
 
 @RestController
 @RequestMapping("/api")
+@CrossOrigin(origins = "*")
 public class PersonController {
 
     @Autowired
@@ -77,6 +78,21 @@ public class PersonController {
 
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Id is not found!");
 
+    }
+
+    @GetMapping("test")
+    public ResponseEntity<?> getOrders() {
+        Map<String, String> orders = new HashMap<>();
+
+        orders.put("ballpen", "Ballpen");
+
+        orders.put("pencil", "Pencil");
+
+        orders.put("notebook", "Notebook");
+
+
+
+        return ResponseEntity.ok(orders);
     }
 
 

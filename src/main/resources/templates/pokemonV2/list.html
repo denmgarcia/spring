@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
+<head>
+    <title>Pokemon</title>
+</head>
+<body>
+<tbody>
+
+<form th:action="@{/v2/pokemon/list}" method="get" style="margin: 20px auto; width: 50%;">
+    <input type="text" name="keyword" placeholder="Search Pokémon by name..."
+           class="form-control" th:value="${keyword}" />
+
+    <div class="d-flex gap-2 mt-2">
+        <button type="submit" class="btn btn-primary">Search</button>
+        <a href="/v2/pokemon/list" class="btn btn-danger">Clear</a>
+        <a href="/v2/pokemon/add" class="btn btn-success">Add Pokémon</a>
+    </div>
+</form>
+
+
+
+<div class="row">
+    <div th:each="pokemon : ${pokemonList}" class="col-md-4 mb-4">
+        <div class="card p-3">
+            <div th:text="${pokemon.name}">
+                <span class="badge badge-pill badge-primary">Primary</span>
+            </div>
+
+            <div style="background: green; border-radius: 60px;">
+                <span class="badge badge-pill badge-dark" th:text="${pokemon.category.category}"></span>
+            </div>
+
+            <div class="mt-2">
+                <a th:href="@{'/v2/pokemon/edit/' + ${pokemon.id}}" class="btn btn-info btn-sm">Edit</a>
+                <a th:href="@{'/v2/pokemon/delete/' + ${pokemon.id}}" class="btn btn-danger btn-sm">Delete</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<br/>
+
+<!--<div th:each="category : ${categories}" style="border: 1px solid green; margin-bottom: 15px; margin-left: 20%; margin-right: 20%">-->
+<!--    <div>-->
+
+<!--        <p th:text="${category.getCategory}" style="padding-left: 20px; padding-top: 15px"></p>-->
+<!--        <ul>-->
+<!--            <li th:each="pokemon : ${category.pokemonList}" th:text="${pokemon.getName}"></li>-->
+
+<!--        </ul>-->
+<!--        &lt;!&ndash;        <p th:text="${category.pokemonList}"></p>&ndash;&gt;-->
+<!--    </div>-->
+<!--</div>-->
+
+
+</tbody>
+</body>
+</html>

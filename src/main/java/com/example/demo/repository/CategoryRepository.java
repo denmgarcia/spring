@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface CategoryRepository extends JpaRepository<Category, Long> {
 
-//    @EntityGraph(attributePaths = {"pokemonList"})
-//    @Override
-//    List<Category> findAll();
+    @EntityGraph(attributePaths = {"pokemonList"})
+    @Override
+    List<Category> findAll();
 }
