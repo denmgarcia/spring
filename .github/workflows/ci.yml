@@ -69,8 +69,11 @@ jobs:
         with:
           fetch-depth: 0
       - name: SonarCube Scan
+        env:
+          SONAR_TOKEN: "sqp_97df7247d236c1220019f19e29068ed92f844a91"
+          SONAR_HOST_URL: "https://squshier-weldon-metazoal.ngrok-free.dev"
         run: |
           mvn sonar:sonar \
             -Dsonar.projectKey=pokemon-api \
-            -Dsonar.host.url="https://squshier-weldon-metazoal.ngrok-free.dev" \ 
-            -Dsonar.token="sqp_97df7247d236c1220019f19e29068ed92f844a91"
+            -Dsonar.host.url=$SONAR_HOST_URL \ 
+            -Dsonar.token=$SONAR_HOST_URL
